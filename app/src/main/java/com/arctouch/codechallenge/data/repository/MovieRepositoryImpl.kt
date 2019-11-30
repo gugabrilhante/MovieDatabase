@@ -5,19 +5,20 @@ import com.arctouch.codechallenge.model.entity.Genre
 import com.arctouch.codechallenge.model.entity.Movie
 import com.arctouch.codechallenge.model.entity.Page
 import com.arctouch.codechallenge.model.mappers.PageMapper
+import io.reactivex.Observable
 import io.reactivex.Single
 
-class MovieRepository(
+class MovieRepositoryImpl(
         private val cacheDataSource: Repositories.CacheDataSource,
         private val serverDataSource: Repositories.ServerDataSource,
         private val mapper: PageMapper = PageMapper()
 ) : Repositories.MovieRepository {
     override fun saveGenres(genres: List<Genre>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        cacheDataSource.saveGenres(genres)
     }
 
-    override fun getMovies(page: Int): Page {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getMovies(page: Int): Single<Page> {
+        return serverDataSource.getUpcomingMovies().map { mapper.fromJsonResponse(it) }
     }
 
     override fun getGenres(): Single<List<Genre>> =

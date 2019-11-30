@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class ServerDataSource :Repositories.ServerDataSource{
+class ServerDataSourceImpl :Repositories.ServerDataSource{
 
     private val api: TmdbApi = Retrofit.Builder()
             .baseUrl(TmdbApi.URL)
@@ -25,7 +25,7 @@ class ServerDataSource :Repositories.ServerDataSource{
         return api.genres(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE)
     }
 
-    override fun getUpcomingMovies(): Observable<UpcomingMoviesResponse> {
+    override fun getUpcomingMovies(): Single<UpcomingMoviesResponse> {
        return api.upcomingMovies(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE, 1, TmdbApi.DEFAULT_REGION)
     }
 

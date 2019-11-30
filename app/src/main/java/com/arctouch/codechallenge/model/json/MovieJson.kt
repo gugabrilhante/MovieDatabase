@@ -1,6 +1,5 @@
 package com.arctouch.codechallenge.model.json
 
-import com.arctouch.codechallenge.model.GenreJson
 import com.squareup.moshi.Json
 
 data class MovieJson(

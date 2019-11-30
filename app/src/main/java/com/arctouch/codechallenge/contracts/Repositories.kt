@@ -11,7 +11,7 @@ import io.reactivex.Single
 
 interface Repositories {
     interface MovieRepository{
-        fun getMovies(page:Int):Page
+        fun getMovies(page:Int): Single<Page>
         fun getGenres(): Single<List<Genre>>
         fun saveGenres(genres:List<Genre>)
     }
@@ -21,7 +21,7 @@ interface Repositories {
     }
     interface ServerDataSource{
         fun getGenres(): Single<GenreResponse>
-        fun getUpcomingMovies():Observable<UpcomingMoviesResponse>
+        fun getUpcomingMovies():Single<UpcomingMoviesResponse>
         fun getMovie():Single<MovieJson>
     }
 }

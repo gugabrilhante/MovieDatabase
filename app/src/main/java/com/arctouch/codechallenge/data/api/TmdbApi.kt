@@ -30,7 +30,7 @@ interface TmdbApi {
         @Query("language") language: String,
         @Query("index") page: Long,
         @Query("region") region: String
-    ): Observable<UpcomingMoviesResponse>
+    ): Single<UpcomingMoviesResponse>
 
     @GET("movie/{id}")
     fun movie(
