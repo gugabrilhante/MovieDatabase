@@ -15,10 +15,15 @@ class PageMapper {
             response.totalResults)
 
     private fun fromMovieJsonList(movieJsonList: List<MovieJson>) = movieJsonList.map {
-        Movie(it.id, it.title, it.overview, fromGenreJsonList(it.genres), it.genreIds, it.posterPath, it.backdropPath, it.releaseDate)
+        Movie(it.id, it.title, it.overview, fromMovieGenreJsonList(it.genres), it.genreIds, it.posterPath, it.backdropPath, it.releaseDate)
     }
 
-    private fun fromGenreJsonList(genreJsonList: List<GenreJson>?) = genreJsonList?.map {
+    private fun fromMovieGenreJsonList(genreJsonList: List<GenreJson>?) = genreJsonList?.map {
         Genre(it.id, it.name)
     }
+
+    fun fromGenreJsonList(genreJsonList: List<GenreJson>) = genreJsonList.map {
+        Genre(it.id, it.name)
+    }
+
 }

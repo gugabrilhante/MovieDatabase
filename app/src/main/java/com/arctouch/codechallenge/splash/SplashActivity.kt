@@ -3,7 +3,7 @@ package com.arctouch.codechallenge.splash
 import android.content.Intent
 import android.os.Bundle
 import com.arctouch.codechallenge.R
-import com.arctouch.codechallenge.api.TmdbApi
+import com.arctouch.codechallenge.data.api.TmdbApi
 import com.arctouch.codechallenge.base.BaseActivity
 import com.arctouch.codechallenge.data.caches.Cache
 import com.arctouch.codechallenge.home.ui.HomeActivity

@@ -7,19 +7,21 @@ import com.arctouch.codechallenge.model.json.GenreResponse
 import com.arctouch.codechallenge.model.json.MovieJson
 import com.arctouch.codechallenge.model.json.UpcomingMoviesResponse
 import io.reactivex.Observable
+import io.reactivex.Single
 
 interface Repositories {
     interface MovieRepository{
         fun getMovies(page:Int):Page
-        fun getGenres():List<Genre>
+        fun getGenres(): Single<List<Genre>>
+        fun saveGenres(genres:List<Genre>)
     }
     interface CacheDataSource{
-        fun getGenres() = Cache.genres
+        fun getGenres() :List<Genre>?
         fun saveGenres(genres:List<Genre>)
     }
     interface ServerDataSource{
-        fun getGenres(): Observable<GenreResponse>
+        fun getGenres(): Single<GenreResponse>
         fun getUpcomingMovies():Observable<UpcomingMoviesResponse>
-        fun getMovie():Observable<MovieJson>
+        fun getMovie():Single<MovieJson>
     }
 }

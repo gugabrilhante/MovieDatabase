@@ -5,7 +5,7 @@ import com.arctouch.codechallenge.model.json.GenreJson
 
 object Cache {
 
-    var genres = listOf<Genre>()
+    var genres:List<Genre>? = listOf<Genre>()
 
     fun cacheGenres(genres: List<Genre>) {
         Cache.genres = genres
