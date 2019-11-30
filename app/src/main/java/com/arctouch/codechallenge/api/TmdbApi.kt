@@ -1,8 +1,8 @@
 package com.arctouch.codechallenge.api
 
-import com.arctouch.codechallenge.model.GenreResponse
-import com.arctouch.codechallenge.model.Movie
-import com.arctouch.codechallenge.model.UpcomingMoviesResponse
+import com.arctouch.codechallenge.model.json.GenreResponse
+import com.arctouch.codechallenge.model.json.MovieJson
+import com.arctouch.codechallenge.model.json.UpcomingMoviesResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -27,7 +27,7 @@ interface TmdbApi {
     fun upcomingMovies(
         @Query("api_key") apiKey: String,
         @Query("language") language: String,
-        @Query("page") page: Long,
+        @Query("index") page: Long,
         @Query("region") region: String
     ): Observable<UpcomingMoviesResponse>
 
@@ -36,5 +36,5 @@ interface TmdbApi {
         @Path("id") id: Long,
         @Query("api_key") apiKey: String,
         @Query("language") language: String
-    ): Observable<Movie>
+    ): Observable<MovieJson>
 }
