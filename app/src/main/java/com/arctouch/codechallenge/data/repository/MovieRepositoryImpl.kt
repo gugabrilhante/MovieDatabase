@@ -22,7 +22,7 @@ class MovieRepositoryImpl(
     }
 
     override fun getMovies(page: Int): Single<Page> {
-        return serverDataSource.getUpcomingMovies().map { mapper.fromJsonResponse(it) }
+        return serverDataSource.getUpcomingMovies(page.toLong()).map { mapper.fromJsonResponse(it) }
     }
 
     override fun getGenres(): Single<List<Genre>> =

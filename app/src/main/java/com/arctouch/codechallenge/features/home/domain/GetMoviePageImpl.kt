@@ -15,15 +15,27 @@ class GetMoviePageImpl(
         val genresSingle = movieRepository.getGenres()
         val pageSingle = movieRepository.getMovies(pageIndex)
         return pageSingle.zipWith(genresSingle, BiFunction<Page, List<Genre>, Page> { page, genreList ->
-            mapPageToGenreList(page, genreList)
+            Page(
+                    page.index,
+                    page.movieList.map { getMovieGenreList(it, genreList) },
+                    page.totalPages,
+                    genreList
+            )
+            //mapPageToGenreList(page, genreList)
         })
     }
 
-    private fun mapPageToGenreList(page: Page, genreList: List<Genre>)
-            = page.copy(movieList = page.movieList.map { getMovieGenreList(it, genreList) }, genres = genreList)
+    private fun mapPageToGenreList(page: Page, genreList: List<Genre>) = page.copy(movieList = page.movieList.map { getMovieGenreList(it, genreList) }, genres = genreList)
 
 
-    private fun getMovieGenreList(movie: Movie, genreList: List<Genre>)
-            = movie.copy(genres = genreList.filter { movie.genreIds?.contains(it.id) == true })
+    private fun getMovieGenreList(movie: Movie, genreList: List<Genre>) = Movie(
+            movie.id,
+            movie.title,
+            movie.overview,
+            genreList.filter { movie.genreIds?.contains(it.id) == true },
+            movie.genreIds,
+            movie.posterPath,
+            movie.backdropPath,
+            movie.releaseDate)
 
 }

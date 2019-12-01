@@ -9,13 +9,15 @@ import com.arctouch.codechallenge.model.json.UpcomingMoviesResponse
 
 class PageMapper {
 
-    fun fromJsonResponse(response: UpcomingMoviesResponse) = Page(
-            response.page,
-            fromMovieJsonList(response.results),
-            response.totalResults)
+    fun fromJsonResponse(response: UpcomingMoviesResponse): Page {
+        return Page(
+                response.page,
+                fromMovieJsonList(response.results),
+                response.totalResults)
+    }
 
     private fun fromMovieJsonList(movieJsonList: List<MovieJson>) = movieJsonList.map {
-        Movie(it.id, it.title, it.overview, fromMovieGenreJsonList(it.genres), it.genreIds, it.posterPath, it.backdropPath, it.releaseDate)
+        Movie(it.id.toInt(), it.title, it.overview, fromMovieGenreJsonList(it.genres), it.genreIds, it.posterPath, it.backdropPath, it.releaseDate)
     }
 
     private fun fromMovieGenreJsonList(genreJsonList: List<GenreJson>?) = genreJsonList?.map {

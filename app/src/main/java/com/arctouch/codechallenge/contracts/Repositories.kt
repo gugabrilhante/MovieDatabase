@@ -25,7 +25,7 @@ interface Repositories {
 
     interface ServerDataSource {
         fun getGenres(): Single<GenreResponse>
-        fun getUpcomingMovies(): Single<UpcomingMoviesResponse>
+        fun getUpcomingMovies(page:Long): Single<UpcomingMoviesResponse>
         fun getMovie(): Single<MovieJson>
     }
 

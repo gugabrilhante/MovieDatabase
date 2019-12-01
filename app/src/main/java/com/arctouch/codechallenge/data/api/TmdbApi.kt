@@ -28,7 +28,7 @@ interface TmdbApi {
     fun upcomingMovies(
         @Query("api_key") apiKey: String,
         @Query("language") language: String,
-        @Query("index") page: Long,
+        @Query("page") page: Long,
         @Query("region") region: String
     ): Single<UpcomingMoviesResponse>
 

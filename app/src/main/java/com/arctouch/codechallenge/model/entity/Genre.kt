@@ -1,3 +1,5 @@
 package com.arctouch.codechallenge.model.entity
 
-data class Genre(val id: Int, val name: String)
+import java.io.Serializable
+
+data class Genre(val id: Int, val name: String):Serializable
