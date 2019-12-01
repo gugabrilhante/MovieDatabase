@@ -1,5 +1,7 @@
 package com.arctouch.codechallenge.model.entity
 
+import java.io.Serializable
+
 data class Movie(
         val id: Int,
         val title: String,
@@ -9,4 +11,9 @@ data class Movie(
         val posterPath: String?,
         val backdropPath: String?,
         val releaseDate: String?
-)
+) : Serializable {
+
+    val genreText: String
+        get() = genres?.joinToString(separator = ", ") { it.name } ?: ""
+
+}

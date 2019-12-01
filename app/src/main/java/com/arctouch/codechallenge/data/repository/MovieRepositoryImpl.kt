@@ -13,6 +13,10 @@ class MovieRepositoryImpl(
         private val serverDataSource: Repositories.ServerDataSource,
         private val mapper: PageMapper = PageMapper()
 ) : Repositories.MovieRepository {
+
+    override val isGenresCached: Boolean
+        get() = !cacheDataSource.getGenres().isNullOrEmpty()
+
     override fun saveGenres(genres: List<Genre>) {
         cacheDataSource.saveGenres(genres)
     }

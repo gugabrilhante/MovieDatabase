@@ -6,5 +6,6 @@ import com.squareup.moshi.Json
 data class Page(
         val index: Int,
         val movieList: List<Movie>,
-        val totalPages: Int
+        val totalPages: Int,
+        val genres: List<Genre>? = null
 )

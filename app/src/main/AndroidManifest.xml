@@ -14,17 +14,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity
-            android:name=".splash.SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
 
-        <activity android:name=".home.ui.HomeActivity">
+        <activity android:name="com.arctouch.codechallenge.features.home.ui.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.arctouch.codechallenge.features.detail.ui.MovieDetailsActivity" />
 
     </application>
 
