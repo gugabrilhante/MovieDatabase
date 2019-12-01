@@ -5,17 +5,17 @@ import com.arctouch.codechallenge.contracts.UseCases
 import com.arctouch.codechallenge.data.api.ServerDataSourceImpl
 import com.arctouch.codechallenge.data.caches.CacheWrapper
 import com.arctouch.codechallenge.data.repository.MovieRepositoryImpl
-import com.arctouch.codechallenge.features.home.domain.GetUpcomingMoviePageImpl
-import com.arctouch.codechallenge.features.home.domain.UpdateGenresImpl
-import com.arctouch.codechallenge.features.home.domain.IsGenresCachedImpl
-import com.arctouch.codechallenge.features.home.domain.SearchMovieImpl
+import com.arctouch.codechallenge.features.home.domain.*
 
 class HomeModuleImpl : HomeModule {
+    override val setGenresToMovies: UseCases.SetGenresToMovies by lazy {
+        SetGenresToMoviesImpl()
+    }
     override val getUpcomingMoviePage: UseCases.GetUpcomingMoviePage by lazy {
-        GetUpcomingMoviePageImpl(movieRepository)
+        GetUpcomingMoviePageImpl(movieRepository, setGenresToMovies)
     }
     override val searchMovie: UseCases.SearchMovie by lazy {
-        SearchMovieImpl(movieRepository)
+        SearchMovieImpl(movieRepository, setGenresToMovies)
     }
     override val updateGenres: UseCases.UpdateGenres by lazy {
         UpdateGenresImpl(movieRepository)
