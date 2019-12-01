@@ -40,12 +40,19 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsInjection {
         viewModel.movieLiveData.observe(this, Observer {
             titleTextView.text = it.title
             genreTextView.text = it.genreText
+            releaseDateTextView.text = it.releaseDate
             overviewTextView.text = it.overview
             it.posterPath?.let { poster: String ->
                 Glide.with(this)
                         .load(MovieImageUrlBuilder().buildPosterUrl(poster))
                         .apply(RequestOptions().placeholder(R.drawable.ic_image_placeholder))
                         .into(movieImageView)
+            }
+            it.backdropPath?.let { poster: String ->
+                Glide.with(this)
+                        .load(MovieImageUrlBuilder().buildPosterUrl(poster))
+                        .apply(RequestOptions().placeholder(R.drawable.ic_image_placeholder))
+                        .into(backImageView)
             }
         })
     }

@@ -10,10 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/imageLayout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginStart="12dp"
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,18 +25,38 @@
                 android:id="@+id/movieImageView"
                 android:layout_width="150dp"
                 android:layout_height="240dp"
-                android:transitionName="@string/movie_poster_transition" />
+                tools:ignore="ContentDescription"/>
 
-            <TextView
-                android:id="@+id/genreTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_toRightOf="@+id/movieImageView"
-                android:transitionName="@string/gente_text_transition"
-                android:textSize="16sp" />
 
-        </RelativeLayout>
+            <ImageView
+                android:id="@+id/backImageView"
+                android:layout_width="150dp"
+                android:layout_height="240dp"
+                android:layout_marginStart="15dp"
+                tools:ignore="ContentDescription"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/releaseDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageLayout" />
+
+        <TextView
+            android:id="@+id/genreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/releaseDateTextView" />
 
         <TextView
             android:id="@+id/titleTextView"
@@ -45,10 +66,9 @@
             android:layout_marginTop="8dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:transitionName="@string/movie_title_transition"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/genreTextView" />
 
         <TextView
             android:id="@+id/overviewTextView"
@@ -62,6 +82,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

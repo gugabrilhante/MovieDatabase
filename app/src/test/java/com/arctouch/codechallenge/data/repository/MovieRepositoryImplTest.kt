@@ -58,9 +58,9 @@ class MovieRepositoryImplTest {
 
     @Test
     fun searchMovie() {
-        whenever(serverDataSource.serachMovie("query", 1)).thenReturn(Single.just(MockData.mockMoviesResponse))
+        whenever(serverDataSource.searchMovie("query", 1)).thenReturn(Single.just(MockData.mockMoviesResponse))
         repository.searchMovie("query", 1)
-        verify(serverDataSource).serachMovie("query", 1)
+        verify(serverDataSource).searchMovie("query", 1)
     }
 
     @Test

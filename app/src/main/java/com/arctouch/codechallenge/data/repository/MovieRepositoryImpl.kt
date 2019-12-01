@@ -24,7 +24,7 @@ class MovieRepositoryImpl(
     }
 
     override fun searchMovie(name:String, page:Long): Single<Page> {
-        return serverDataSource.serachMovie(name, page).map { mapper.fromJsonResponse(it) }
+        return serverDataSource.searchMovie(name, page).map { mapper.fromJsonResponse(it) }
     }
 
     override fun getGenres(): Single<List<Genre>> =

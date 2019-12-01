@@ -28,11 +28,8 @@ class ServerDataSourceImpl : Repositories.ServerDataSource {
         return api.upcomingMovies(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE, page, TmdbApi.DEFAULT_REGION)
     }
 
-    override fun serachMovie(name: String, page: Long): Single<MoviesResponse> {
+    override fun searchMovie(name: String, page: Long): Single<MoviesResponse> {
         return api.searchMovies(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE, name, page)
     }
 
-    override fun getMovie(): Single<MovieJson> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }
