@@ -7,8 +7,11 @@ import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 
 interface UseCases {
-    interface GetMoviePage {
+    interface GetUpcomingMoviePage {
         operator fun invoke(pageIndex: Int): Single<Page>
+    }
+    interface SearchMovie{
+        operator fun invoke(name:String, page:Long):Single<Page>
     }
     interface UpdateGenres{
         operator fun invoke(genres:List<Genre>): Completable

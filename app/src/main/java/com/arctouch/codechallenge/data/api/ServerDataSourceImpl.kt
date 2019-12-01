@@ -3,8 +3,7 @@ package com.arctouch.codechallenge.data.api
 import com.arctouch.codechallenge.contracts.Repositories
 import com.arctouch.codechallenge.model.json.GenreResponse
 import com.arctouch.codechallenge.model.json.MovieJson
-import com.arctouch.codechallenge.model.json.UpcomingMoviesResponse
-import io.reactivex.Observable
+import com.arctouch.codechallenge.model.json.MoviesResponse
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -25,8 +24,12 @@ class ServerDataSourceImpl : Repositories.ServerDataSource {
         return api.genres(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE)
     }
 
-    override fun getUpcomingMovies(page: Long): Single<UpcomingMoviesResponse> {
+    override fun getUpcomingMovies(page: Long): Single<MoviesResponse> {
         return api.upcomingMovies(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE, page, TmdbApi.DEFAULT_REGION)
+    }
+
+    override fun serachMovie(name: String, page: Long): Single<MoviesResponse> {
+        return api.searchMovies(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE, name, page)
     }
 
     override fun getMovie(): Single<MovieJson> {

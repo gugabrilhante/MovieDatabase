@@ -2,10 +2,8 @@ package com.arctouch.codechallenge.data.repository
 
 import com.arctouch.codechallenge.contracts.Repositories
 import com.arctouch.codechallenge.model.entity.Genre
-import com.arctouch.codechallenge.model.entity.Movie
 import com.arctouch.codechallenge.model.entity.Page
 import com.arctouch.codechallenge.model.mappers.PageMapper
-import io.reactivex.Observable
 import io.reactivex.Single
 
 class MovieRepositoryImpl(
@@ -21,8 +19,12 @@ class MovieRepositoryImpl(
         cacheDataSource.saveGenres(genres)
     }
 
-    override fun getMovies(page: Int): Single<Page> {
+    override fun getUpcomingMovies(page: Int): Single<Page> {
         return serverDataSource.getUpcomingMovies(page.toLong()).map { mapper.fromJsonResponse(it) }
+    }
+
+    override fun searchMovie(name:String, page:Long): Single<Page> {
+        return serverDataSource.serachMovie(name, page).map { mapper.fromJsonResponse(it) }
     }
 
     override fun getGenres(): Single<List<Genre>> =

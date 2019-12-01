@@ -11,7 +11,8 @@ class HomeViewModelFactory(private val context: Context) : ViewModelProvider.Fac
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return HomeViewModel(
-                module.getMoviePage,
+                module.getUpcomingMoviePage,
+                module.searchMovie,
                 module.isGenresCached,
                 module.updateGenres
         ) as T

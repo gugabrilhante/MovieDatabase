@@ -5,11 +5,11 @@ import com.arctouch.codechallenge.model.entity.Movie
 import com.arctouch.codechallenge.model.entity.Page
 import com.arctouch.codechallenge.model.json.GenreJson
 import com.arctouch.codechallenge.model.json.MovieJson
-import com.arctouch.codechallenge.model.json.UpcomingMoviesResponse
+import com.arctouch.codechallenge.model.json.MoviesResponse
 
 class PageMapper {
 
-    fun fromJsonResponse(response: UpcomingMoviesResponse): Page {
+    fun fromJsonResponse(response: MoviesResponse): Page {
         return Page(
                 response.page,
                 fromMovieJsonList(response.results),

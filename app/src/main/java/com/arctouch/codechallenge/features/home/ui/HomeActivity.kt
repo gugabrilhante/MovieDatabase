@@ -55,6 +55,15 @@ class HomeActivity : AppCompatActivity(), MovieListener, HomeInjection {
     }
 
     private fun registerObservables() {
+        viewModel.isDataReloaded.observe(this, Observer {
+            if(it){
+                adapter.clearList()
+                searchView.clearFocus()
+            }
+            else{
+                recyclerView.smoothScrollBy(0, 60)
+            }
+        })
         viewModel.movieListLiveData.observe(this, Observer {
             adapter.addToList(it)
         })
@@ -75,7 +84,7 @@ class HomeActivity : AppCompatActivity(), MovieListener, HomeInjection {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (recyclerView.reachedBottomLinearLayout(0, adapter.movieListSize - 1)) {
-                    if (adapter.movieListSize > 0) recyclerView.smoothScrollBy(0, -10)
+                    if (adapter.movieListSize > 0) recyclerView.smoothScrollBy(0, -20)
                     if (!progressBar.isVisible()) viewModel.loadNextPage()
                 }
             }

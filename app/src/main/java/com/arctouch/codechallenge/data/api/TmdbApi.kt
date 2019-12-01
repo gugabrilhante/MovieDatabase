@@ -2,7 +2,7 @@ package com.arctouch.codechallenge.data.api
 
 import com.arctouch.codechallenge.model.json.GenreResponse
 import com.arctouch.codechallenge.model.json.MovieJson
-import com.arctouch.codechallenge.model.json.UpcomingMoviesResponse
+import com.arctouch.codechallenge.model.json.MoviesResponse
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -30,7 +30,7 @@ interface TmdbApi {
         @Query("language") language: String,
         @Query("page") page: Long,
         @Query("region") region: String
-    ): Single<UpcomingMoviesResponse>
+    ): Single<MoviesResponse>
 
     @GET("movie/{id}")
     fun movie(
@@ -38,4 +38,12 @@ interface TmdbApi {
         @Query("api_key") apiKey: String,
         @Query("language") language: String
     ): Observable<MovieJson>
+
+    @GET("search/movie/")
+    fun searchMovies(
+            @Query("api_key") api_key: String,
+            @Query("language") language: String,
+            @Query("query") name: String,
+            @Query("page") page: Long
+    ): Single<MoviesResponse>
 }

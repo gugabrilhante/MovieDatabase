@@ -8,12 +8,12 @@ import com.arctouch.codechallenge.model.entity.Page
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 
-class GetMoviePageImpl(
+class GetUpcomingMoviePageImpl(
         private val movieRepository: Repositories.MovieRepository
-) : UseCases.GetMoviePage {
+) : UseCases.GetUpcomingMoviePage {
     override fun invoke(pageIndex: Int): Single<Page> {
         val genresSingle = movieRepository.getGenres()
-        val pageSingle = movieRepository.getMovies(pageIndex)
+        val pageSingle = movieRepository.getUpcomingMovies(pageIndex)
         return pageSingle.zipWith(genresSingle, BiFunction<Page, List<Genre>, Page> { page, genreList ->
             Page(
                     page.index,
