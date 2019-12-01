@@ -19,6 +19,9 @@ object MockData {
                 Genre(2, "c")
         )
 
+    val mockMovie
+        get() = Movie(1, "", "", emptyList(), listOf(1, 2), "", "", "")
+
     val mockMovieList
         get() = listOf(
                 Movie(1, "", "", emptyList(), listOf(1, 2), "", "", "")

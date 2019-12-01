@@ -9,12 +9,14 @@ import io.reactivex.Single
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
+import junit.framework.Assert.assertTrue
 import org.junit.Test
 
 import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.TestRule
 import org.mockito.ArgumentMatchers.anyList
+import org.mockito.ArgumentMatchers.anyLong
 
 class HomeViewModelTest {
 
@@ -39,26 +41,37 @@ class HomeViewModelTest {
 
         viewModel = HomeViewModel(getUpcomingMoviePage, searchMovie, isGenresCached, updateGenres)
         whenever(getUpcomingMoviePage.invoke(any())).thenReturn(pageSingle)
+        whenever(searchMovie.invoke(any(), any())).thenReturn(pageSingle)
+        whenever(updateGenres(any())).thenReturn(Completable.fromAction { })
     }
 
     @Test
     fun `on view created load upcoming movies`() {
         viewModel.onViewCreated()
         verify(getUpcomingMoviePage).invoke(any())
+        assertTrue(viewModel.movieListLiveData.value!!.isNotEmpty())
     }
 
     @Test
-    fun `on reload data, load upcoming movies`(){
+    fun `on reload data, load upcoming movies`() {
         viewModel.reloadAll()
         verify(getUpcomingMoviePage).invoke(any())
+        assertTrue(viewModel.movieListLiveData.value!!.isNotEmpty())
     }
 
     @Test
-    fun `genres are cached only in first download`(){
+    fun `genres are cached only in first download`() {
         whenever(isGenresCached()).thenReturn(false)
-        whenever(updateGenres(any())).thenReturn(Completable.fromAction {  })
         viewModel.onViewCreated()
         verify(isGenresCached).invoke()
         verify(updateGenres).invoke(anyList())
+    }
+
+    @Test
+    fun `search movie by query`() {
+        val query = "query"
+        viewModel.searchMovieList(query)
+        verify(searchMovie).invoke(query, 1)
+
     }
 }
