@@ -20,7 +20,7 @@ class HomeViewHolder(parent: ViewGroup, private val listener: MovieListener) :
         itemView.genresTextView.text = genreText
         itemView.releaseDateTextView.text = movie.releaseDate
 
-        Glide.with(itemView)
+        Glide.with(itemView.context)
                 .load(movie.posterPath?.let { MovieImageUrlBuilder().buildPosterUrl(it) })
                 .apply(RequestOptions().placeholder(R.drawable.ic_image_placeholder))
                 .into(itemView.posterImageView)

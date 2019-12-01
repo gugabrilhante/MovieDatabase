@@ -8,17 +8,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.arctouch.codechallenge.R
 import com.arctouch.codechallenge.extensions.*
 import com.arctouch.codechallenge.features.detail.ui.MovieDetailsActivity
+import com.arctouch.codechallenge.features.home.injection.HomeInjection
+import com.arctouch.codechallenge.features.home.injection.HomeModule
+import com.arctouch.codechallenge.features.home.injection.HomeModuleImpl
 import com.arctouch.codechallenge.features.home.presentation.HomeViewModel
+import com.arctouch.codechallenge.features.home.presentation.HomeViewModelFactory
 import com.arctouch.codechallenge.features.home.ui.adapter.HomeAdapter
 import com.arctouch.codechallenge.features.home.ui.adapter.MovieListener
 import com.arctouch.codechallenge.model.entity.Movie
 import kotlinx.android.synthetic.main.home_activity.*
 
-class HomeActivity : AppCompatActivity(), MovieListener {
+class HomeActivity : AppCompatActivity(), MovieListener, HomeInjection {
+
+    override val module: HomeModule = HomeModuleImpl()
 
     private lateinit var viewModel: HomeViewModel
 
@@ -27,6 +34,7 @@ class HomeActivity : AppCompatActivity(), MovieListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_activity)
+        viewModel = getViewModel()
         setupViews()
         registerObservables()
         savedInstanceState?.let { savedInstance: Bundle ->
@@ -110,4 +118,7 @@ class HomeActivity : AppCompatActivity(), MovieListener {
             this.startActivity(intent)
         }
     }
+
+    private fun getViewModel() =
+            ViewModelProviders.of(this, HomeViewModelFactory(this)).get(HomeViewModel::class.java)
 }

@@ -15,7 +15,9 @@
         tools:ignore="GoogleAppIndexingWarning">
 
 
-        <activity android:name="com.arctouch.codechallenge.features.home.ui.HomeActivity">
+        <activity
+            android:name=".features.home.ui.HomeActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
