@@ -10,8 +10,6 @@ import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
 
-import org.junit.Assert.*
-
 class GetUpcomingMoviePageImplTest {
 
     private val movieRepository: Repositories.MovieRepository = mock()
@@ -20,7 +18,7 @@ class GetUpcomingMoviePageImplTest {
     private lateinit var getUpcomingMoviePage: GetUpcomingMoviePageImpl
 
     private val genreList = Single.just(MockData.mockGenreList)
-    private val page = Single.just(MockData.mockPage)
+    private val page = Single.just(MockData.mockPageNoGenres)
 
     @Before
     fun setUp() {

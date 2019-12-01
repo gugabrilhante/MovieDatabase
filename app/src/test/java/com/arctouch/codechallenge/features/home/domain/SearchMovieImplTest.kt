@@ -19,7 +19,7 @@ class SearchMovieImplTest {
     private lateinit var searchMovie: SearchMovieImpl
 
     private val genreList = Single.just(MockData.mockGenreList)
-    private val page = Single.just(MockData.mockPage)
+    private val page = Single.just(MockData.mockPageNoGenres)
 
     @Before
     fun setUp() {

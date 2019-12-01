@@ -24,12 +24,25 @@ object MockData {
                 Movie(1, "", "", emptyList(), listOf(1, 2), "", "", "")
         )
 
-    val mockPage
+    val mockMovieListWithGenres
+        get() = listOf(
+                Movie(1, "", "", listOf(Genre(1, "b"), Genre(2, "c")), listOf(1, 2), "", "", "")
+        )
+
+    val mockPageNoGenres
         get() = Page(
                 1,
                 mockMovieList,
                 2,
                 null
+        )
+
+    val mockPageWithGenres
+        get() = Page(
+                1,
+                mockMovieList,
+                2,
+                mockGenreList
         )
 
     private val mockGenreJsonList
